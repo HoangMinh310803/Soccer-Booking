@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
@@ -8,6 +6,8 @@ import { PitchesModule } from './pitches/pitches.module';
 import { BookingsModule } from './bookings/bookings.module';
 import { MatchesModule } from './matches/matches.module';
 import { ReviewsModule } from './reviews/reviews.module';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
   imports: [
@@ -31,8 +31,10 @@ import { ReviewsModule } from './reviews/reviews.module';
     BookingsModule,
     MatchesModule,
     ReviewsModule,
+    AuthModule,
+    SharedModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
