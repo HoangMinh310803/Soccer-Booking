@@ -10,18 +10,6 @@ Authentication: JWT (JSON Web Token) & Passport.js
 
 Security: Bcrypt
 
-├── soccer-booking-api/ # Backend NestJS
-│ ├── src/
-│ │ ├── auth/ # Xử lý Login/Register
-│ │ ├── users/ # Quản lý người dùng
-│ │ ├── pitches/ # Quản lý sân bóng
-│ │ ├── bookings/ # Logic đặt sân
-│ │ ├── matches/ # Matchmaking (ghép đội)
-│ │ ├── shared/ # Custom Repositories & Utilities
-│ │ └── main.ts
-│ └── .env.example
-│
-
 1. Yêu cầu hệ thống
    Node.js (v18+)
    PostgreSQL (v15+)
