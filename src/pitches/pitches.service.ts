@@ -1,26 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PitchRepository } from '../shared/repositories/pitch.repository';
 import { CreatePitchDto } from './dto/create-pitch.dto';
-import { UpdatePitchDto } from './dto/update-pitch.dto';
 
 @Injectable()
 export class PitchesService {
-  create(createPitchDto: CreatePitchDto) {
-    return 'This action adds a new pitch';
+  constructor(private readonly pitchRepository: PitchRepository) {}
+
+  async create(createPitchDto: CreatePitchDto) {
+    const newPitch = this.pitchRepository.create(createPitchDto);
+    return await this.pitchRepository.save(newPitch);
   }
 
-  findAll() {
-    return `This action returns all pitches`;
+  async findAll() {
+    return await this.pitchRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pitch`;
+  async findOne(id: string) {
+    const pitch = await this.pitchRepository.findById(id);
+    if (!pitch) throw new NotFoundException('not found pitch');
+    return pitch;
   }
 
-  update(id: number, updatePitchDto: UpdatePitchDto) {
-    return `This action updates a #${id} pitch`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} pitch`;
+  async remove(id: string) {
+    const pitch = await this.findOne(id);
+    return await this.pitchRepository.remove(pitch);
   }
 }

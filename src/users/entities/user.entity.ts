@@ -18,13 +18,13 @@ export class User {
   @Column()
   name: string;
 
-  @Column({ select: false }) // Bảo mật: không hiện password khi query
+  @Column({ select: false })
   password: string;
 
-  @Column({ default: 'USER' }) // USER, OWNER, ADMIN
+  @Column({ default: 'ADMIN' }) // USER, OWNER, ADMIN
   role: string;
 
-  @Column({ type: 'float', default: 5.0 }) // Điểm uy tín/trình độ
+  @Column({ type: 'float', default: 5.0 })
   rating: number;
 
   @OneToMany(() => Booking, (booking) => booking.user)
