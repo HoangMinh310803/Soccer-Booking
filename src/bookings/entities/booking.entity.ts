@@ -22,12 +22,12 @@ export class Booking {
   @Column({ default: 'PENDING' }) // PENDING, CONFIRMED, CANCELLED
   status: string;
 
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  totalPrice: number;
+
   @ManyToOne(() => User, (user) => user.bookings)
   user: User;
 
   @ManyToOne(() => Pitch, (pitch) => pitch.bookings)
   pitch: Pitch;
-
-  @CreateDateColumn()
-  createdAt: Date;
 }
